@@ -107,7 +107,7 @@ export default class Base {
         //In edit mode, exit the editing state and delete control points when clicking outside the currently edited shape.
         if (!hitEntities || activeEntity.id !== pickedObject.id.id) {
           this.setState('static');
-          this.removeControlPoints();
+          this.ControlPoints();
           this.disableDrag();
           // Trigger 'drawEnd' and return the geometry shape points when exiting the edit mode.
           this.eventDispatcher.dispatchEvent('editEnd', this.getPoints());
@@ -480,6 +480,7 @@ export default class Base {
     if (this.type === 'polygon') {
       this.viewer.entities.remove(this.polygonEntity);
       this.viewer.entities.remove(this.outlineEntity);
+      this.viewer.entities.remove(this.lineEntity);
     } else if (this.type === 'line') {
       this.viewer.entities.remove(this.lineEntity);
     }
